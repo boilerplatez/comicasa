@@ -1,0 +1,12 @@
+{
+    "config": {
+        "vendor-dir": "lib"
+    },
+    "minimum-stability": "dev",
+    
+    "require": {
+    	"jqgeeks/bootstrap": "dev-master",
+    	"jqgeeks/utils": "dev-master",
+		"rudrax/core" : "dev-master"
+    }
+}

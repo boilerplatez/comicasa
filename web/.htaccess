@@ -1,0 +1,23 @@
+RewriteEngine on
+
+#RewriteCond %{REQUEST_FILENAME} - [F]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^static/pri/1/(.*) index.php?q=static/pri/1/$1 [L,QSA]
+
+RewriteCond %{HTTP_REFERER} !^http://(www\.)?localhost[NC] 
+RewriteCond %{HTTP_REFERER} !^http://(www\.)?localhost.*$ [NC] 
+RewriteRule ^static/pub/(.*)\.(.*)$ - [F]
+RewriteRule ^static/pub/(.*) ../static/pub/$1 [L]
+
+RewriteRule ^resources/(.*)\.(css\.php|js\.php) ../build/resources/$1.$2 [L]
+RewriteRule ^lib/(.*)\.(css\.php|js\.php) ../build/lib/$1.$2 [L]
+
+RewriteRule ^lib/(.*).(css|js|txt|jpeg|jpg|png|gif|eot|svg|ttf|woff) ../lib/$1.$2 [L]
+RewriteRule ^resources/(.*).(css|js|txt|jpeg|jpg|png|gif|eot|svg|ttf|woff) ../resources/$1.$2 [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?q=$1 [L,QSA]
+
+
