@@ -8,9 +8,8 @@
 
 error_reporting(E_ALL | E_STRICT);
 include_once (MODEL_PATH .'/ImageUploader.php');
-include_once(RUDRA_HANDLER . "/AbstractDataHandler.php");
 
-class Uploader extends AbstractDataHandler {
+class Uploader extends AbstractHandler {
 
 	public function invokeHandler(User $user, $img, $page,$q,$action) {
 		if($user->isValid()){

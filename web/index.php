@@ -17,6 +17,9 @@ RudraX::mapRequest("home",function($q,$p,$f,$action="Login"){
 RudraX::mapRequest("image/{pid}",function($q,$p,$f,$pid){
 	return RudraX::invokeHandler("Image");
 });
+RudraX::mapRequest("album/{aid}",function($q,$p,$f,$aid){
+	return RudraX::invokeHandler("ViewAlbum");
+});
 
 RudraX::mapRequest("viewpic/{pid}",function($q,$p,$f,$pid){
 	return RudraX::invokeHandler("ViewPic");

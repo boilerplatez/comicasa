@@ -14,19 +14,20 @@ class Image extends AbstractPageHandler {
 	public function invokeHandler(Smarty $viewModel,Header $header,$pid,
 			$imageAction="view",User $user) {
 		$header->title('PayPic');
-		$header->import('jqgeeks/bootstrap_css','mypage');
+		$header->import('picbootstrap','mypage');
 		$viewModel->assign("pname","@RTPic");
 		global $RDb;
-		$picture = new Picture($pid,$user->getToken() || 0);
-		$image = Picture::getPicInfoById($pid);
-		Browser::log($picture,$user->getToken());
+		$picture = new Picture($pid,$user->getToken());
+		//$image = Picture::getPicInfoById($pid);
+		Browser::log($picture,$user->getToken(),$picture->image->uid,$user->getToken()==$picture->image->uid);
 		$hasBaught = false;
 		$hasSaved = false;
 		$canBuy = false;
 
 		if($user->isValid()){
 			if($picture->isMyPic()){
-				$user->set('canAccess_'.$pid, $image->file_path);
+				Browser::log('isMyPic');
+				$user->set('canAccess_'.$pid, $picture->image->file_path);
 			} else {
 				$imageAccess = Picture::getPicAccess($pid,$user->getToken());
 				$hasFileAccessIndexed= !empty($imageAccess);
@@ -34,7 +35,7 @@ class Image extends AbstractPageHandler {
 					$hasBaught = ($imageAccess->baught==1);
 					$hasSaved =  ($imageAccess->saved==1);
 				}
-				$canBuy = ($user->getCoins()>=$image->price);
+				$canBuy = ($user->getCoins()>=$picture->image->price);
 				if(strcmp("buyImage",$imageAction)==0){
 					if($picture->isPaid() && !$hasBaught && $canBuy){
 						if($hasFileAccessIndexed){
@@ -43,7 +44,7 @@ class Image extends AbstractPageHandler {
 							$RDb->update("INSERT INTO file_access (uid,pid,baught,saved) values(%d,%d,1,1)",$user->uid,$pid);
 							$hasFileAccessIndexed = true;
 						}
-						$user->setCoins($user->get('coins') - $image->price);
+						$user->setCoins($user->get('coins') - $picture->image->price);
 						$hasBaught = true;
 					}
 				} else if(strcmp("saveImage",$imageAction)==0){
@@ -67,12 +68,12 @@ class Image extends AbstractPageHandler {
 					} else {
 						$RDb->update("INSERT INTO file_access (uid,pid,liked,baught,saved) values(%d,%d,1,0,0)",$user->uid,$pid);
 					}
-					$image->likes = $image->likes+($like*2)-1;
-					$RDb->update("update files set likes=%d where id=%d",$image->likes,$pid);
+					$picture->image->likes = $picture->image->likes+($like*2)-1;
+					$RDb->update("update files set likes=%d where id=%d",$$picture->image->likes,$pid);
 					$hasFileAccessIndexed = true;
 				}
 				if(!$picture->isPaid() || $hasBaught){
-					$user->set('canAccess_'.$pid, $image->file_path);
+					$user->set('canAccess_'.$pid, $picture->image->file_path);
 				}
 			}
 		}
@@ -82,7 +83,7 @@ class Image extends AbstractPageHandler {
 		$viewModel->assign("hasBaught",$hasBaught);
 		$viewModel->assign("isPaid",$picture->isPaid());
 		$viewModel->assign("hasSaved",$hasSaved);
-		$viewModel->assign("image",$image);
+		$viewModel->assign("image",$picture->image);
 		return "image";
 	}
 
