@@ -1,63 +1,31 @@
 <?php
-/*
- * To change this license header, choose License Headers in Project Properties. To change this template file, choose Tools | Templates and open the template in the editor.
-*/
 
-require_once "project.php";
+ini_set('display_errors', 'On');
+ini_set ( 'error_reporting', E_ALL );
+error_reporting(E_ALL);
 
+require_once("../lib/rudrax/core/init.php");
+//Loads all the Constants
+RudraX::loadConfig("../app/config/project.properties");
+//Initialze Rudrax
+RudraX::init();
 
 global $RDb;
 $RDb = RudraX::getDB('DB1');
 
-// Default RudraX Plug
-RudraX::mapRequest("home",function($q,$p,$f,$action="Login"){
-	return RudraX::invokeHandler($action);
-});
-
-RudraX::mapRequest("image/{pid}",function($q,$p,$f,$pid){
-	return RudraX::invokeHandler("Image");
-});
-RudraX::mapRequest("album/{aid}",function($q,$p,$f,$aid){
-	return RudraX::invokeHandler("ViewAlbum");
-});
-
-RudraX::mapRequest("viewpic/{pid}",function($q,$p,$f,$pid){
-	return RudraX::invokeHandler("ViewPic");
-});
-RudraX::mapRequest("static/pri/{uid}/{v}",function($q,$p,$f,$d,$uid,$v){
-	//echo "nooo".$v;
-	return RudraX::invokeHandler('Pic');
-});
-
-RudraX::mapRequest("uploader",function($q,$p,$f,$d){
-	return RudraX::invokeHandler('Uploader');
-});
-
-RudraX::mapRequest("delete/{pid}",function($q,$p,$f,$pid){
-	return RudraX::invokeHandler('DeleteImage');
-});
-
-RudraX::mapRequest("upload",function($q,$p,$f,$d){
-	return RudraX::invokeHandler('Upload');
-});
-
-RudraX::mapRequest("admin/access",function($q,$p,$f,$pid){
-	return RudraX::invokeHandler('ImageAccess');
-});
 // Define Custom Request Plugs
+require_once(APP_PATH."/controller/web.php");
+
+// Default RudraX Plug
 RudraX::mapRequest("template/{temp}",function($temp="nohandler"){
 	return RudraX::invokeHandler($temp);
 });
-
 RudraX::mapRequest('data/{eventname}',function($eventName="dataHandler"){
 	$controller = RudraX::getDataController();
 	$controller->invokeHandler($eventName);
 });
-
 // Default Plug for default page
-RudraX::mapRequest("",function($q,$p,$f,$d,$t="index"){
-	return RudraX::invokeHandler("Images");
+RudraX::mapRequest("",function(){
+	return RudraX::invokeHandler("Index");
 });
-
-
 $RDb->close();

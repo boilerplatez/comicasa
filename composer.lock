@@ -56,7 +56,7 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/jqgeeks/bootstrap.git",
-                "reference": "eef2f3982f643f34231ca40516c9df94ec2b1ae9"
+                "reference": "774a46bda6b70ff19620dddbb267c6192ba30f50"
             },
             "require": {
                 "frameworks/bootstrap": "3.2.*",
@@ -76,7 +76,7 @@
                 "api",
                 "rudra"
             ],
-            "time": "2014-10-13 15:31:16"
+            "time": "2014-10-27 18:05:40"
         },
         {
             "name": "jqgeeks/jquery",
@@ -107,7 +107,7 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/jqgeeks/utils.git",
-                "reference": "28fcc7a8f980ab3b218e30c4c4daa93dd71e6e24"
+                "reference": "947518e7ffc988a6bbf91827b2c80237a630b43d"
             },
             "require": {
                 "jqgeeks/jquery": ">=1.3.0"
@@ -122,7 +122,7 @@
                 "api",
                 "rudra"
             ],
-            "time": "2014-10-15 18:55:13"
+            "time": "2014-11-01 16:34:42"
         },
         {
             "name": "rudrax/core",
@@ -130,12 +130,12 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/rudrax/rudra-core.git",
-                "reference": "de2815590ec7ad248614889ef4e36889baf279e4"
+                "reference": "86b8ec2866a5ad69994be491fb265190d38ec6b9"
             },
             "require": {
-                "rudrax/magicmin": "dev-master",
-                "rudrax/phpfastcache": "dev-master",
-                "rudrax/smarty": "dev-master"
+                "rudrax/magicmin": "2.5.*",
+                "rudrax/phpfastcache": "2.*",
+                "rudrax/smarty": "3.*"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -149,15 +149,15 @@
                 "rudra",
                 "smarty"
             ],
-            "time": "2014-09-29 04:12:34"
+            "time": "2014-11-01 16:34:03"
         },
         {
             "name": "rudrax/magicmin",
-            "version": "dev-master",
+            "version": "2.5.0",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/rudrax/magicmin.git",
-                "reference": "9ac7c37a945adbee4bba539a7402d4602c9e0720"
+                "reference": "726358812814248fa67d0f9fcd2c9221479670b2"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -175,11 +175,11 @@
         },
         {
             "name": "rudrax/phpfastcache",
-            "version": "dev-master",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/rudrax/phpfastcache.git",
-                "reference": "50603dc9cff263fe93155ef970251e9970418259"
+                "reference": "58c1f2681b3f727f8baf71c673f48d1edf33b30b"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -197,11 +197,11 @@
         },
         {
             "name": "rudrax/smarty",
-            "version": "dev-master",
+            "version": "v3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/rudrax/smarty.git",
-                "reference": "61dcecc487c802edb374f4a16db26fee2773645e"
+                "reference": "22574a8ff7eaf699d4385f485238c62bb2367000"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
