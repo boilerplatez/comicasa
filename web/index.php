@@ -28,4 +28,5 @@ RudraX::mapRequest('data/{eventname}',function($eventName="dataHandler"){
 RudraX::mapRequest("",function(){
 	return RudraX::invokeHandler("Index");
 });
+RudraX::mapRequestInvoke();
 $RDb->close();

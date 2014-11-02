@@ -2,9 +2,6 @@
 RudraX::mapRequest("home",function($q,$p,$f,$action="Login"){
 	return RudraX::invokeHandler($action);
 });
-RudraX::mapRequest("image/{pid}",function($q,$p,$f,$pid){
-	return RudraX::invokeHandler("Image");
-});
 RudraX::mapRequest("album/{aid}",function($q,$p,$f,$aid){
 	return RudraX::invokeHandler("ViewAlbum");
 });
@@ -26,5 +23,11 @@ RudraX::mapRequest("upload",function($q,$p,$f,$d){
 });
 RudraX::mapRequest("admin/access",function($q,$p,$f,$pid){
 	return RudraX::invokeHandler('ImageAccess');
+});
+RudraX::mapRequest("image/{pid}",function($q,$p,$f,$pid){
+	return RudraX::invokeHandler("Image");
+});
+RudraX::mapRequest("",function(){
+	return RudraX::invokeHandler("Images");
 });
 ?>

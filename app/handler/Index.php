@@ -9,7 +9,7 @@ include_once(RUDRA . "/core/handler/AbstractPageHandler.php");
 
 class Index extends AbstractPageHandler {
 
-	public function invokeHandler(Smarty $viewModel,$header,$f,$page) {
+	public function invokeHandler(Smarty $viewModel,$header,$f,$page,User $user) {
 		
 		$header->meta(array(
 				'keywords' => 'Home Meta Keywords',
@@ -29,14 +29,14 @@ class Index extends AbstractPageHandler {
 		if (isset($_REQUEST['uname'])) {
 			$username = $_POST['uname'];
 			$password = $_POST['pass'];
-			$this->user->auth($username, $password);
+			$user->auth($username, $password);
 		}
 
 		//Console::log($this->user->getToken(),$username,$password);
-		if ($this->user->isValid()) {
-			$viewModel->assign('token',$this->user->getToken());
+		if ($user->isValid()) {
+			$viewModel->assign('token',$user->getToken());
 
-			$viewModel->assign('profile', $this->user->getProfile());
+			$viewModel->assign('profile', $user->getProfile());
 
 			$viewModel->assign("Name", "Fred Irving Johnathan Bradley Peppergill", true);
 			$viewModel->assign("FirstName", array("John", "Mary", "James", "Henry"));
