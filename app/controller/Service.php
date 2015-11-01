@@ -17,8 +17,9 @@ namespace app\controller {
 
         public static function DBSetup()
         {
+            $config = \Config::getSection("DB1");
             if(!self::$CONNECTED){
-                R::setup('mysql:host=localhost;dbname=comics', 'comics', 'comics');
+                R::setup('mysql:host=localhost;dbname='.$config['dbname'], $config['username'], $config['password']);
                 self::$CONNECTED = true;
             }
         }
