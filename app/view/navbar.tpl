@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-inverse navbar-fixed-top-x" role="navigation">
 	<div class="container">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
@@ -8,19 +8,14 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="{$smarty.const.CONTEXT_PATH}">{$pname}</a>
+			<a class="navbar-brand" href="{$smarty.const.CONTEXT_PATH}">Comics</a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
-				{if $user->isValid()}
-				<li><a><span class="badge label-warning glyphicon glyphicon-certificate">{$user->getCoins()}</span></a></li>
-				<li><a href="{$smarty.const.CONTEXT_PATH}upload">Upload</a></li>
-				<li><a href="{$smarty.const.CONTEXT_PATH}home?action=Logout">Logout</a>
-				</li> {else}
-				<li><a href="{$smarty.const.CONTEXT_PATH}home">Login</a>
-				</li> {/if}
+				<li><a href="{$smarty.const.CONTEXT_PATH}account">Login({$user->role}:{$user->uname})</a>
+				</li>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->
