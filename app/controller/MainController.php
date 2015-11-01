@@ -112,7 +112,8 @@ namespace app\controller {
             Service::DBSetup();
 
             $comic = R::load("comic",$comic_id);
-            $chapters = R::find("chapter", "comic_id = :comic_id AND vol = :vol", ["comic_id" => $comic_id,"vol"=>$vol]);
+            $chapters = R::find("chapter", "comic_id = :comic_id AND vol = :vol",
+                array("comic_id" => $comic_id,"vol"=>$vol));
 
             $model->assign("comic", $comic);
             $model->assign("volume", $vol);
@@ -132,11 +133,11 @@ namespace app\controller {
             $comic = R::load("comic",$comic_id);
 
             $chapter = R::findOne('chapter',' comic_id = :comic_id ORDER BY inorder asc,time asc LIMIT :inorder, 1',
-                   [  ":comic_id" => ($comic->id), ":inorder" => $inorder-1]);
+                array( ":comic_id" => ($comic->id), ":inorder" => $inorder-1));
             $chapter->inorder = $inorder;
 
             $pages = R::find("page", "chapter_id = :chapter_id ORDER BY inorder",
-                [":chapter_id" => $chapter->id]);
+                array(":chapter_id" => $chapter->id));
 //            $page = R::getRow("SELECT page.*, chapter.* FROM page JOIN chapter
 //            WHERE chapter.id = page.chapter_id AND chapter_id = :chapter_id
 //            ORDER BY page_order, time asc LIMIT :page, 1",["chapter_id" => $chapter_id, "page" => $index]);
@@ -178,7 +179,7 @@ namespace app\controller {
 
             $comic = R::load("comic",$comic_id);
             $chapter = R::findOne("chapter","comic_id = :comic_id ORDER BY inorder asc ,time asc LIMIT :inorder, 1",
-                  [ ":comic_id" => $comic->id, ":inorder" => $inorder-1]);
+                array( ":comic_id" => $comic->id, ":inorder" => $inorder-1));
 
             if($chapter == null){
                 return $this->comicDetails($model,$comic_id,$vol);
@@ -186,7 +187,7 @@ namespace app\controller {
             $chapter->inorder = $inorder;
 
             $page = R::findOne("page", "chapter_id = :chapter_id ORDER BY inorder ".$page_order.", time ".$page_order." LIMIT :page, 1",
-                ["chapter_id" => $chapter->id, "page" => $index-1]);
+                array("chapter_id" => $chapter->id, "page" => $index-1));
 
             if($page==null){
                 return $this->viewpage($model,$comic_id,$vol,$inorder+1,1);

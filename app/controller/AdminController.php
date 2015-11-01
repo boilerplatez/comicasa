@@ -16,7 +16,7 @@ namespace app\controller {
         function myComics($model)
         {
             Service::DBSetup();
-            $comics = R::find("comic", "uid = :uid", ["uid" => $this->user->uid]);
+            $comics = R::find("comic", "uid = :uid", array("uid" => $this->user->uid));
             $model->assign("comics", $comics);
             $model->assign("user", $this->user);
             return "member/comics";
@@ -60,12 +60,12 @@ namespace app\controller {
                 $chapter->uid = $this->user->uid;
                 $chapter->vol = $vol;
                 $chapter->comic = $comic;
-                $chapter->inorder = R::count("chapter", "comic_id = :comic_id AND vol = :vol", ["comic_id" => $comic_id,"vol"=>$vol]);
+                $chapter->inorder = R::count("chapter", "comic_id = :comic_id AND vol = :vol", array("comic_id" => $comic_id,"vol"=>$vol));
                 $chapter->time = microtime(true);
                 R::store($chapter);
             }
 
-            $chapters = R::find("chapter", "comic_id = :comic_id AND vol = :vol", ["comic_id" => $comic_id,"vol"=>$vol]);
+            $chapters = R::find("chapter", "comic_id = :comic_id AND vol = :vol", array("comic_id" => $comic_id,"vol"=>$vol));
             //print_r($comic);
             $model->assign("comic", $comic);
 
@@ -90,7 +90,7 @@ namespace app\controller {
             $chapter = R::load("chapter",$chapter_id);
             $comic = R::load("comic",$chapter->comic_id);
 
-            $pages = R::find("page", "chapter_id = :chapter_id ORDER BY inorder, time asc", [":chapter_id" => $chapter_id]);
+            $pages = R::find("page", "chapter_id = :chapter_id ORDER BY inorder, time asc", array(":chapter_id" => $chapter_id));
             $model->assign("pages", $pages);
             $model->assign("chapter", $chapter);
             $model->assign("comic", $comic);
