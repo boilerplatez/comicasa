@@ -55,3 +55,6 @@ lib/*
 config
 .idea
 src/external/components
+static
+build
+paypic.iml
