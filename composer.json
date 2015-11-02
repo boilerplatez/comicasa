@@ -10,7 +10,7 @@
     }
   },
   "require": {
-    "rudrax/boot": "dev-master",
+    "rudrax/boot": ">=0.0.2",
     "gabordemooij/redbean": "dev-master",
     "ptcong/php-image-uploader": "dev-master"
   }
