@@ -12,6 +12,7 @@ lftp -c "open -u $FTP_USER,$FTP_PASSWORD $FTP_SERVER; set ssl:verify-certificate
 nvm install 0.10
 npm update
 npm install -g grunt-cli
+npm install -g bower
 
 bower update
 
