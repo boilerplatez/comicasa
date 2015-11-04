@@ -104,7 +104,7 @@ namespace app\controller {
         }
 
         /**
-         * @RequestMapping(url="series/{comic_id}/vol/{vol}",type="template",auth=true)
+         * @RequestMapping(url="series/{comic_id}/vol/{vol}",type="template")
          * @RequestParams(true)
          */
         function comicDetails($model,$comic_id=0,$vol = 1)
