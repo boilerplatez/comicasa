@@ -20,7 +20,7 @@ jQuery(document).ready(function(){
     });
 
   $('#fileupload').fileupload({
-    url: CONTEXT_PATH +'/account/chapter/'+CHAPTER_ID+'/uploader',
+    url: CONTEXT_PATH +'account/chapter/'+CHAPTER_ID+'/uploader',
     dataType: 'json',
     autoUpload: true,
     acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
