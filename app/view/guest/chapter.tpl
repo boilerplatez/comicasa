@@ -22,7 +22,7 @@
 			<div class="row">
 				{foreach from=$pages key=k item=page name=pages}
 				<div class="col-lg-3 col-md-4 col-xs-6 thumb">
-					<a class="thumbnail" href="{$smarty.const.CONTEXT_PATH}pic/{$comic->id}/{$chapter->vol}/ch/{$chapter->inorder}/page/{$smarty.foreach.pages.index+1}">
+					<a class="thumbnail" href="{$smarty.const.CONTEXT_PATH}series/{$comic->id}/{$chapter->vol}/ch/{$chapter->inorder}/page/{$smarty.foreach.pages.index+1}">
                         <img class="img-responsive" src="{$smarty.const.CONTEXT_PATH}static/pub/{$page->thumbnail}" alt="">
 					</a>
 				</div>
