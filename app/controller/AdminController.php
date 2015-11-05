@@ -107,24 +107,28 @@ namespace app\controller {
         {
             Service::DBSetup();
 
-            $uploader =  new ImageUploader(array(
-                'user_token' => $this->user->uid
-            ));
+            try{
+                $uploader =  new ImageUploader(array(
+                    'user_token' => $this->user->uid
+                ));
 
-            if($uploader->file != null){
-                $page = R::dispense("page");
-                $page->chapter_id = $chapter_id;
-                $page->uid = $this->user->uid;
-                $page->name = $uploader->file->name;
-                $page->size = $uploader->file->size;
-                $page->type = $uploader->file->type;
-                $page->title = $uploader->file->title;
-                $page->description = $uploader->file->description;
-                $page->time = microtime(true);
-                $page->inorder = 0;
-                $page->file_path = $uploader->file->path;
-                $page->thumbnail = $uploader->file->thumbnail;
-                $uploader->file->id = R::store($page);
+                if($uploader->file != null){
+                    $page = R::dispense("page");
+                    $page->chapter_id = $chapter_id;
+                    $page->uid = $this->user->uid;
+                    $page->name = $uploader->file->name;
+                    $page->size = $uploader->file->size;
+                    $page->type = $uploader->file->type;
+                    $page->title = $uploader->file->title;
+                    $page->description = $uploader->file->description;
+                    $page->time = microtime(true);
+                    $page->inorder = 0;
+                    $page->file_path = $uploader->file->path;
+                    $page->thumbnail = $uploader->file->thumbnail;
+                    $uploader->file->id = R::store($page);
+                }
+            } catch(\Exception $e){
+                return $e;
             }
             return $uploader->content;
         }
