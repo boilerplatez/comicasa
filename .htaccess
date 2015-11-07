@@ -36,7 +36,7 @@ RewriteRule ^(.*)$ index.php [F,L]
 
 ##############################################################################################
 
-RewriteCond $1 !^(api|poll|src|lib|build|dist)
+RewriteCond $1 !^(api|poll|src|lib|build|dist|app)
 #RewriteCond $1 !^(.*\.php)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

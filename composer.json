@@ -6,12 +6,14 @@
 
   "autoload": {
     "psr-4": {
-      "app\\": "app/"
+      "app\\": "app/",
+      "Parichya\\": "app/broker/"
     }
   },
   "require": {
     "rudrax/boot": ">=0.0.2",
     "gabordemooij/redbean": "dev-master",
-    "ptcong/php-image-uploader": "dev-master"
+    "ptcong/php-image-uploader": "dev-master",
+    "jasny/sso": "dev-master"
   }
 }
